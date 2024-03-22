@@ -134,7 +134,7 @@ class LoyaltyCard extends StatelessWidget {
                   return Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color: Colors.grey),
+                      border: Border.all(color: Colors.grey, width: 1.5),
                     ),
                     child: Center(
                       child: index < currentStamps
