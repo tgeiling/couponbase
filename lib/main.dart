@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'elements.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
@@ -54,24 +56,25 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.white,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Icon(
                 Icons.menu,
                 size: 32,
-                color: Colors.grey.shade100,
+                color: Colors.grey.shade800,
               ),
               Text(
                 '${Provider.of<StampProvider>(context).stamps}',
-                style: TextStyle(color: Colors.grey.shade100),
+                style: TextStyle(color: Colors.grey.shade800),
               ),
             ],
           ),
         ),
         body: Container(
-          color: Colors.black,
+          padding: const EdgeInsets.all(6.0),
+          color: Colors.white,
           child: LoyaltyCard(),
         ),
       ),
@@ -99,7 +102,7 @@ class LoyaltyCard extends StatelessWidget {
     }
 
     return Card(
-      color: Colors.grey.shade800,
+      color: Colors.grey.shade100,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
@@ -112,10 +115,10 @@ class LoyaltyCard extends StatelessWidget {
             Image.asset('assets/logo.png', height: 60), // Top logo
             SizedBox(height: 20),
             Text(
-              'Kaufe 10 Döner bekomme einen kostenlos',
+              'Besuche uns 9 mal und wir belohnen dich',
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.grey.shade100),
+                  fontWeight: FontWeight.bold, color: Colors.grey.shade800),
             ),
             Expanded(
               child: GridView.builder(
@@ -143,7 +146,8 @@ class LoyaltyCard extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
+            PressableButton(
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => QRScanPage(
