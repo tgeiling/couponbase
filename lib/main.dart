@@ -63,11 +63,11 @@ class _MyAppState extends State<MyApp> {
               Icon(
                 Icons.menu,
                 size: 32,
-                color: Colors.grey.shade800,
+                color: Color(0xFFb98068),
               ),
               Text(
                 '${Provider.of<StampProvider>(context).stamps}',
-                style: TextStyle(color: Colors.grey.shade800),
+                style: TextStyle(color: Color(0xFFb98068)),
               ),
             ],
           ),
@@ -102,7 +102,7 @@ class LoyaltyCard extends StatelessWidget {
     }
 
     return Card(
-      color: Colors.grey.shade100,
+      color: Color(0xFFf8e8d4),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
@@ -118,7 +118,7 @@ class LoyaltyCard extends StatelessWidget {
               'Besuche uns 9 mal und wir belohnen dich',
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.grey.shade800),
+                  fontWeight: FontWeight.bold, color: Color(0xFFb98068)),
             ),
             Expanded(
               child: GridView.builder(
@@ -134,7 +134,8 @@ class LoyaltyCard extends StatelessWidget {
                   return Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color: Colors.grey, width: 1.5),
+                      border:
+                          Border.all(color: Colors.grey.shade100, width: 2.5),
                     ),
                     child: Center(
                       child: index < currentStamps
@@ -145,17 +146,18 @@ class LoyaltyCard extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 5),
             PressableButton(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+              padding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
+                stampProvider.addStamp();
+                /* Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => QRScanPage(
                           onQRViewCreated: (controller) =>
                               _onQRViewCreated(controller, stampProvider),
-                        )));
+                        ))); */
               },
-              child: Text('Scan QR Code'),
+              child: Text('Scan QR Code', style: TextStyle(fontSize: 24)),
             ),
           ],
         ),
